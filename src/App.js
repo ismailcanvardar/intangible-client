@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Artwork from "../src/pages/Artwork";
+import Artworks from "../src/pages/Artworks";
+import Bids from "../src/pages/Bids";
+import CreateArtwork from "../src/pages/CreateArtwork";
+import Creator from "../src/pages/Creator";
+import Creators from "../src/pages/Creators";
+import Home from "../src/pages/Home";
+import Profile from "../src/pages/Profile";
+import Settings from "../src/pages/Settings";
+import Navbar from "../src/components/Navbar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route path="/artwork/:id">
+          <Artwork />
+        </Route>
+        <Route path="/artworks/:type">
+          <Artworks />
+        </Route>
+        <Route path="/bids">
+          <Bids />
+        </Route>
+        <Route path="/create">
+          <CreateArtwork />
+        </Route>
+        <Route path="/creator/:id">
+          <Creator />
+        </Route>
+        <Route path="/creators">
+          <Creators />
+        </Route>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+        <Route path="/settings">
+          <Settings />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
