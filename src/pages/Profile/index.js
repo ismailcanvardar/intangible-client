@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Avatar from "../../components/Avatar";
 import Container from "../../components/Container";
 import BottomInfo from "../../components/BottomInfo";
-import AuctionInfo from "../../components/AuctionInfo";
+import CollectionInfo from "../../components/CollectionInfo";
 import AddressBox from "../../components/AddressBox";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { Web3Context } from "../../contexts/Web3Provider";
+import { RingLoader } from "react-spinners";
 
 function Profile() {
+  const { state } = useLocation();
+  const [isNewTokenMinted, setIsNewTokenMinted] = useState();
+  const { account } = useContext(Web3Context);
+  const [collections, setCollections] = useState();
+
+  useEffect(() => {
+    if (state && state.isNewTokenMinted === true) {
+      setIsNewTokenMinted(true);
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (account !== null && account !== undefined) {
+      getTokens();
+    }
+  }, [account]);
+
+  const getTokens = () => {
+    console.log(account);
+    axios
+      .get(`${process.env.REACT_APP_API_ENDPOINT}/tokens/${account}`)
+      .then((res) => setCollections(res.data))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <div className="bg-background w-screen">
@@ -25,17 +54,26 @@ function Profile() {
             This is a name of user
           </h1>
           <h1 className="text-text-primary my-2">@thisisusername</h1>
-          <AddressBox/>
-          <div className="flex justify-center py-16">
-            <div className="py-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
+          {
+            account &&  <AddressBox account={account}/>
+          }
+          {collections === undefined || collections === null ? (
+            <div className="py-16 flex justify-center">
+              <RingLoader color={"tomato"} size={50} />
             </div>
-          </div>
+          ) : (
+            <div className="flex justify-center py-16">
+              <div className="py-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+                {
+                  collections.map(collection => {
+                    return (
+                      <CollectionInfo key={collection._id} data={collection}/>
+                    )
+                  })
+                }
+              </div>
+            </div>
+          )}
         </div>
         <BottomInfo />
       </Container>

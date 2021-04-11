@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Popper from "popper.js";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
 import useDropdownStore from "../../stores/useDropdownStore";
 import { BiUserCircle, BiLogOutCircle } from "react-icons/bi";
+import { Web3Context } from "../../contexts/Web3Provider";
+import { shortenAddress } from "../../utils/addressShortener";
 
 const Dropdown = ({ color }) => {
   const { isOpen, closeDropdown, openDropdown } = useDropdownStore();
@@ -17,6 +19,8 @@ const Dropdown = ({ color }) => {
     openDropdown();
   };
 
+  const { connectWallet, balance, account } = useContext(Web3Context);
+
   // bg colors
   let bgColor;
   color === "white"
@@ -25,7 +29,7 @@ const Dropdown = ({ color }) => {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full sm:w-6/12 md:w-4/12 px-4">
+        <div className="w-full sm:w-6/12 md:w-4/12 pl-4">
           <div className="relative inline-flex align-middle w-full">
             <button
               className={
@@ -41,8 +45,8 @@ const Dropdown = ({ color }) => {
             >
               <div className="flex flex-row">
                 <div className="flex flex-col items-end pr-3 pl-1">
-                  <h1 className="font-bold">12 ETH</h1>
-                  <p>0x432...123</p>
+                  <h1 className="font-bold">{balance && balance.slice(0, 5)} AVAX</h1>
+                  <p>{shortenAddress(account)}</p>
                 </div>
                 <Avatar size="small" />
               </div>

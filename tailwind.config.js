@@ -27,22 +27,23 @@ module.exports = {
     },
     boxShadow: {
       ...defaultTheme.boxShadow,
-      gif: "5px 5px 60px 2px rgba(255,0,0,0.5)",
+      gif: "5px 5px 60px 10px rgba(238, 126, 83, 0.5)",
       button1: "0px 0px 10px 1px rgba(255,255,255,0.5)",
-      button2: "0px 0px 20px 1px rgba(255,0,0,0.5)",
-      button3: "0px 0px 20px 1px rgba(247, 174, 56, 0.5)",
+      button2: "0px 0px 20px 1px rgba(238, 126, 83, 0.5)",
+      button3: "0px 0px 20px 1px rgba(238, 126, 83, 0.5)",
       cardInner: "inset 0 2px 4px 0 rgba(255, 255, 255, 0.1)",
     },
     colors: {
       ...defaultTheme.colors,
-      primary: "#FF5C5C",
-      primaryPale: "rgba(255, 92, 92, 0.5)",
-      background: "#000000",
+      primary: "#ee7e53",
+      primaryPale: "rgba(238, 126, 83, 0.5)",
+      background: "#111111",
       text: {
         primary: "#FFFFFF",
         primaryPale: "rgba(255, 255, 255, 0.5)",
         primaryPale2: "rgba(255, 255, 255, 0.75)",
         secondary: "#000000",
+        main: "#ee7e53",
       },
       input: {
         background: "#212020",
@@ -50,7 +51,7 @@ module.exports = {
         placeholder: "rgba(255, 255, 255, 0.75)",
       },
       button: {
-        primary: "#FF5C5C",
+        primary: "#ee7e53",
         success: "#8BDD58",
         info: "#47A6FF",
         warning: "#F7AE38",

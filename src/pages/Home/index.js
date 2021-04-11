@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../components/Container";
 import GradientHeading from "../../components/GradientHeading";
 import ReactPlayer from "react-player";
@@ -8,21 +8,38 @@ import Input from "../../components/Input";
 import Footer from "../../components/Footer";
 import AuctionInfo from "../../components/AuctionInfo";
 import CreatorInfo from "../../components/CreatorInfo";
+import axios from "axios";
+import { RingLoader } from "react-spinners";
 
 function Home() {
+  const [auctions, setAuctions] = useState();
+
+  const getAuctions = () => {
+    axios
+      .get(`${process.env.REACT_APP_API_ENDPOINT}/auctions`)
+      .then((res) => {
+        setAuctions(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  useEffect(() => {
+    getAuctions();
+  }, [])
+
   return (
     <>
       <Container>
-        {/* Slogan & Gif place */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 pt-16">
           <div>
             <div className="w-full md:w-2/3">
-              <GradientHeading heading="Be creative & be part of our community." />
+              <GradientHeading heading="Be creative & be a part of our community." />
             </div>
             <div className="pt-6 w-full md:w-2/3">
               <p className="align-justify text-sm text-text-primaryPale">
-                We are happy to see you in our platform. Wanna be artist so fill
-                this form. We will send you information email.
+                We will be glad to see you on our platform. Enter your email
+                down below to become an intangible artist.
               </p>
             </div>
             <div className="pt-6 pb-14 md:pb-0">
@@ -65,49 +82,26 @@ function Home() {
           </div>
           {/* FEATURED ARTWORKS */}
           <div className="flex justify-center">
-            <div className="py-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-              <AuctionInfo condition="LIVE" />
-              <AuctionInfo condition="LIVE" />
-              <AuctionInfo condition="LIVE" />
-              <AuctionInfo condition="LIVE" />
-              <AuctionInfo condition="LIVE" />
-              <AuctionInfo condition="LIVE" />
-            </div>
+            {auctions !== undefined && auctions !== null ? (
+              <>
+                <div className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                  {
+                    auctions.map(auctionData => {
+                      return (
+                        <AuctionInfo
+                          auctionData={auctionData}
+                        />
+                      );
+                    })
+                  }
+                </div>
+              </>
+            ) : (
+              <div className="flex justify-center items-center mt-16">
+                <RingLoader color="tomato" />
+              </div>
+            )}
           </div>
-          {/* ----------------------- */}
-          <div>
-            <div className="border-b-2 w-full border-primaryPale p-2">
-              <h1 className="text-text-primary font-bold text-lg">
-                Featured artworks
-              </h1>
-            </div>
-          </div>
-          {/* FEATURED ARTWORKS */}
-          <div className="flex justify-center">
-            <div className="py-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
-              <AuctionInfo condition="NOT_MET" />
-            </div>
-          </div>
-          {/* ----------------------- */}
-          <div>
-            <div className="border-b-2 w-full border-primaryPale p-2">
-              <h1 className="text-text-primary font-bold text-lg">
-                Featured creators
-              </h1>
-            </div>
-          </div>
-          {/* FEATURED ARTWORKS */}
-          <div className="flex justify-center">
-            <div className="py-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-              <CreatorInfo />
-            </div>
-          </div>
-          {/* ----------------------- */}
           <div className="pb-48"></div>
         </div>
       </Container>
