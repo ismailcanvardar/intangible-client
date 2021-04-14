@@ -57,14 +57,19 @@ function Home() {
               </form>
             </div>
           </div>
-          <div className="h-full w-full shadow-gif overflow-hidden rounded-lg xl:col-span-2">
-            <ReactPlayer
-              url={intangibleHome}
-              height="100%"
-              width="100%"
-              loop
-              playing
-            />
+          <div className="h-full w-auto shadow-gif overflow-hidden rounded-lg xl:col-span-2">
+            <video
+                muted
+                className="rounded-xl h-full w-auto object-cover"
+                autoPlay
+                loop
+              >
+                <source
+                  src={intangibleHome}
+                  type="video/mp4"
+                  className="rounded-xl h-96 w-auto"
+                />
+              </video>
           </div>
         </div>
         <div className="mt-28">

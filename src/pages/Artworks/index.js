@@ -36,7 +36,7 @@ function Artworks() {
           >
             Live auction
           </Link>
-          <Link
+          {/* <Link
             to="/artworks/reserve-not-met"
             className={
               `${(type === "reserve-not-met"
@@ -45,7 +45,7 @@ function Artworks() {
             }
           >
             Reserve not met
-          </Link>
+          </Link> */}
           <Link
             to="/artworks/sold"
             className={

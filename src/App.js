@@ -34,7 +34,7 @@ function App() {
               <Route path="/create">
                 <CreateArtwork />
               </Route>
-              <Route path="/creator/:id">
+              <Route path="/creator/:address">
                 <Creator />
               </Route>
               <Route path="/creators">

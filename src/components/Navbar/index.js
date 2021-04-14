@@ -12,13 +12,13 @@ function Navbar() {
 
   return (
     <div className="2xl:px-48 xl:px-40 lg:px-32 md:px-24 sm:px-16 px-8 bg-background">
-      <div className="flex flex-row pt-6">
+      <div className="flex flex-row pt-6 items-center">
         <div>
           <h1 className="text-text-main text-3xl">Intangible</h1>
         </div>
         {/* Buttons and connect wallet section */}
         <div className="flex flex-row flex-1 justify-between pl-24">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 flex items-center">
             <Link
               to="/"
               className={`${
@@ -59,9 +59,11 @@ function Navbar() {
               bgColor="bg-button-control"
             /> */}
             <FiSun size={24} color={"white"} />
+            <div className="h-12">
             <Link to="/create" className="h-full flex justify-center items-center text-black rounded-lg bg-white px-4 font-bold ml-4 hover:shadow-button1 bg-gradient-to-r from-red-500">
               Create
             </Link>
+            </div>
             {account ? (
               <Dropdown />
             ) : (

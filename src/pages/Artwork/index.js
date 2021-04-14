@@ -214,11 +214,11 @@ const Artwork = () => {
             <p className="text-text-primaryPale text-xl">
               {collectionData && collectionData.description}
             </p>
-            <Link to="/" className="text-text-primaryPale text-sm mt-2">
+            <Link to={`/creator/${collectionData && collectionData.creator}`} className="text-text-primaryPale text-sm mt-2">
               Creator:{" "}
               {collectionData && shortenAddress(collectionData.creator)}
             </Link>
-            <Link to="/" className="text-text-primaryPale text-sm mt-2">
+            <Link to={`/creator/${tokenOwner}`} className="text-text-primaryPale text-sm mt-2">
               Owner: {tokenOwner && shortenAddress(tokenOwner)}
             </Link>
             {countdownData && (
