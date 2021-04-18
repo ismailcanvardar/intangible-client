@@ -174,7 +174,7 @@ export default function CreationModal({
                         onClick={handleApproval}
                         size="medium"
                         label="Approve"
-                        bgColor="bg-white"
+                        bgColor="bg-primary"
                       />
                     </div>
                     <div className="relative px-6 flex-auto">
@@ -191,7 +191,7 @@ export default function CreationModal({
                           onClick={handleMint}
                           size="medium"
                           label="Mint"
-                          bgColor="bg-white"
+                          bgColor="bg-primary"
                         />
                         {isUploadingImage === true && (
                           <p className="text-text-primaryPale mt-2 text-xs">
