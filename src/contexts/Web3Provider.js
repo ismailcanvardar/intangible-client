@@ -5,6 +5,7 @@ import { default as IntangibleAuctionHouse } from "../contracts/IntangibleAuctio
 import { default as IntangibleNFT } from "../contracts/IntangibleNFT.json";
 import { default as MarketplaceSettings } from "../contracts/MarketplaceSettings.json";
 import detectEthereumProvider from "@metamask/detect-provider";
+import { BiWindowOpen } from "react-icons/bi";
 
 export const Web3Context = createContext();
 
@@ -46,6 +47,11 @@ function Web3Provider({ children }) {
       getBalance(accounts[0]);
       window.location.reload();
     }
+  }
+
+  const disconnect = async () => {
+    setAccount();
+    window.location.reload();
   }
 
   useEffect(() => {
@@ -127,6 +133,7 @@ function Web3Provider({ children }) {
         connectWallet,
         connect,
         balance,
+        disconnect
       }}
     >
       {children}

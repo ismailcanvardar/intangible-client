@@ -58,9 +58,9 @@ function Navbar() {
               label="Connect Wallet"
               bgColor="bg-button-control"
             /> */}
-            <FiSun size={24} color={"white"} />
+            {/* <FiSun size={24} color={"white"} /> */}
             <div className="h-12">
-            <Link to="/create" className="h-full flex justify-center items-center text-black rounded-lg bg-white px-4 font-bold ml-4 hover:shadow-button1 bg-gradient-to-r from-red-500">
+            <Link to="/create" className="h-full flex justify-center items-center text-text-secondary rounded-lg bg-white px-4 font-bold ml-4 hover:shadow-button1 bg-primary">
               Create
             </Link>
             </div>

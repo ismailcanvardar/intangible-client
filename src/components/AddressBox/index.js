@@ -27,7 +27,7 @@ function AddressBox({ account }) {
     <div onClick={copyToClipboard} className="cursor-pointer bg-control w-42 h-8 flex justify-around items-center rounded-lg px-4">
       <p
         value={account}
-        className="text-text-secondary text-xs mr-2"
+        className="text-text-primary text-xs mr-2"
       >
         {shortenAddress(account)}
       </p>

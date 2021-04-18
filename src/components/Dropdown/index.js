@@ -19,7 +19,7 @@ const Dropdown = ({ color }) => {
     openDropdown();
   };
 
-  const { connectWallet, balance, account } = useContext(Web3Context);
+  const { connectWallet, balance, account, disconnect } = useContext(Web3Context);
 
   // bg colors
   let bgColor;
@@ -33,7 +33,7 @@ const Dropdown = ({ color }) => {
           <div className="relative inline-flex align-middle w-full">
             <button
               className={
-                "text-text-secondary text-sm px-4 py-1 rounded-lg shadow  hover:shadow-button1 shadow hover:shadow-lg outline-none focus:outline-none " +
+                "text-text-primary text-sm px-4 py-1 rounded-lg shadow  hover:shadow-button1 shadow hover:shadow-lg outline-none focus:outline-none " +
                 bgColor
               }
               style={{ transition: "all .15s ease" }}
@@ -67,8 +67,8 @@ const Dropdown = ({ color }) => {
                   (color === "white" ? "text-text-secondary" : "text-white")
                 }
               >
-                <BiUserCircle size={18} className="mr-2"/>
-                Go to my profile
+                <BiUserCircle size={18} color="black" className="mr-2"/>
+                <p className="text-text-primary">Go to my profile</p>
               </Link>
               {/* <a
                 href="#pablo"
@@ -90,18 +90,21 @@ const Dropdown = ({ color }) => {
               >
                 Something else here
               </a> */}
-              <div className="h-0 my-2 border border-solid border-t-0 border-gray-900 opacity-25" />
-              <a
+              {/* <div className="h-0 my-2 border border-solid border-t-0 border-gray-900 opacity-25" /> */}
+              {/* <a
                 href="#pablo"
                 className={
                   "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent  flex flex-row " +
                   (color === "white" ? "text-text-secondary" : "text-white")
                 }
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  disconnect();
+                }}
               >
-                <BiLogOutCircle size={18} className="mr-1"/>
-                Disconnect
-              </a>
+                <BiLogOutCircle size={18} color="black" className="mr-1"/>
+                <p className="text-text-primary">Disconnect</p>
+              </a> */}
             </div>
           </div>
         </div>

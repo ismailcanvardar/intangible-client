@@ -18,6 +18,7 @@ export default function Modal({ showModal, setShowModal }) {
   const [cpFileType, setCCFileType] = useState();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
+  const [description, setDescription] = useState("");
 
   const { account } = useContext(Web3Context);
 
@@ -95,12 +96,18 @@ export default function Modal({ showModal, setShowModal }) {
         username
       }
     }
+    if (description.length > 0) {
+      queue = {
+        ...queue,
+        description
+      }
+    }
     queue = {
       ...queue,
       address: account
     }
     // console.log(queue);
-    if (username.length > 0 || name.length > 0 || ppBuffer !== undefined || cpBuffer !== undefined) {
+    if (username.length > 0 || name.length > 0 || description.length > 0 || ppBuffer !== undefined || cpBuffer !== undefined) {
       axios
         .post(`${process.env.REACT_APP_API_ENDPOINT}/users/update/${account}`, queue)
         .then((res) => {
@@ -130,12 +137,12 @@ export default function Modal({ showModal, setShowModal }) {
                       type="file"
                       className={`${
                         !ppFile && "border border-dashed"
-                      } border-gray-500 focus:outline-none focus:border rounded h-32 w-32 flex flex-col gap-4 justify-center items-center`}
+                      } border-gray-500 focus:outline-none focus:border rounded h-48 w-48 flex flex-col gap-4 justify-center items-center`}
                     >
                       {ppFile == null || ppFile == undefined ? (
                         <ImUpload className="text-gray-700" size={36} />
                       ) : (
-                        <img className="rounded-xl h-36 w-auto" src={ppFile} />
+                        <img className="rounded-xl h-48 w-auto" src={ppFile} />
                       )}
                     </button>
                   </div>
@@ -148,35 +155,37 @@ export default function Modal({ showModal, setShowModal }) {
                       type="file"
                       className={`${
                         !cpFile && "border border-dashed"
-                      } border-gray-500 focus:outline-none focus:border rounded h-32 w-32 flex flex-col gap-4 justify-center items-center`}
+                      } border-gray-500 focus:outline-none focus:border rounded h-48 w-48 flex flex-col gap-4 justify-center items-center`}
                     >
                       {cpFile === null || cpFile == undefined ? (
                         <ImUpload className="text-gray-700" size={36} />
                       ) : (
-                        <img className="rounded-xl h-36 w-auto" src={cpFile} />
+                        <img className="rounded-xl h-48 w-auto" src={cpFile} />
                       )}
                     </button>
                   </div>
                   <div className="my-2">
                     <Input
                       value={name}
-                      onChange={(e) => {
-                        if (name.length < 8) {
-                          setName(e.target.value);
-                        }
-                      }}
+                      onChange={(e) => setName(e.target.value)}
                       placeholder="Name here..."
+                      maxLength="8"
                     />
                   </div>
                   <div className="my-2">
                     <Input
                       value={username}
-                      onChange={(e) => {
-                        if (username.length < 8) {
-                          setUsername(e.target.value);
-                        }
-                      }}
+                      onChange={(e) => setUsername(e.target.value)}
                       placeholder="Username here..."
+                      maxLength="8"
+                    />
+                  </div>
+                  <div className="my-2">
+                    <Input
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      placeholder="Description here..."
+                      maxLength="120"
                     />
                   </div>
                 </div>

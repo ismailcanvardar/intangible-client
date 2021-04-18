@@ -103,7 +103,7 @@ export default function CreationModal({
         onClick={() => setShowModal(true)}
         size="large"
         label="Create Collection"
-        bgColor="bg-white"
+        bgColor="bg-button-primary"
       />
       {showModal ? (
         <>

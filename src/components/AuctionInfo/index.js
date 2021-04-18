@@ -86,7 +86,7 @@ function AuctionInfo({ auctionData }) {
                 {auctionData.lastBid !== null
                   ? auctionData.lastBid.amount
                   : auctionData.minimumBid}{" "}
-                ETH
+                AVAX
               </p>
             </div>
             <div>
@@ -101,7 +101,7 @@ function AuctionInfo({ auctionData }) {
           <>
             <div>
               <h1 className="text-text-primary font-bold">Reserved price</h1>
-              <p className="text-sm">{auctionData.reservePrice} ETH</p>
+              <p className="text-sm">{auctionData.reservePrice} AVAX</p>
             </div>
           </>
         )}

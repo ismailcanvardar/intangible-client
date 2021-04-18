@@ -114,6 +114,9 @@ function Profile() {
           <h1 className="text-text-primary my-2">
             {userData && "@" + userData.username}
           </h1>
+          <p className="text-text-primary mt-2 mb-4">
+            {userData && userData.description}
+          </p>
           {account && <AddressBox account={account} />}
           <div className="mt-2">
             <Button

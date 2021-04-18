@@ -32,7 +32,7 @@ function Home() {
     <>
       <Container>
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 pt-16">
-          <div>
+          <div className="col-span-1">
             <div className="w-full md:w-2/3">
               <GradientHeading heading="Be creative & be a part of our community." />
             </div>
@@ -43,34 +43,32 @@ function Home() {
               </p>
             </div>
             <div className="pt-6 pb-14 md:pb-0">
-              <form className="flex gap-1">
+              <form className="grid grid-cols-2">
                 <Input placeholder="Your email" size="large" />
                 <div className="ml-3">
                   <Button
                     size="large"
                     label={"Send"}
                     bgColor="bg-button-primary"
-                    labelColor="text-text-primary"
+                    labelColor="text-text-secondary"
                     shadow="shadow hover:shadow-gif"
                   />
                 </div>
               </form>
             </div>
           </div>
-          <div className="h-full w-auto shadow-gif overflow-hidden rounded-lg xl:col-span-2">
-            <video
-                muted
-                className="rounded-xl h-full w-auto object-cover"
-                autoPlay
-                loop
-              >
-                <source
-                  src={intangibleHome}
-                  type="video/mp4"
-                  className="rounded-xl h-96 w-auto"
-                />
-              </video>
-          </div>
+          <video
+            muted
+            className="w-full col-span-2 shadow-gif rounded-xl h-full w-auto object-cover"
+            autoPlay
+            loop
+          >
+            <source
+              src={intangibleHome}
+              type="video/mp4"
+              className="rounded-xl h-96 w-auto"
+            />
+          </video>
         </div>
         <div className="mt-28">
           {/* LIVE AUCTIONS */}
@@ -90,15 +88,9 @@ function Home() {
             {auctions !== undefined && auctions !== null ? (
               <>
                 <div className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                  {
-                    auctions.map(auctionData => {
-                      return (
-                        <AuctionInfo
-                          auctionData={auctionData}
-                        />
-                      );
-                    })
-                  }
+                  {auctions.map((auctionData) => {
+                    return <AuctionInfo auctionData={auctionData} />;
+                  })}
                 </div>
               </>
             ) : (

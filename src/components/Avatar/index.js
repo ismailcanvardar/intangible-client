@@ -1,6 +1,6 @@
 import React from "react";
 
-const Avatar = ({size = "medium"}) => {
+const Avatar = ({size = "medium", source}) => {
   const sizeDecider = () => {
     if (size==="small") {
       return "w-10 h-10";
@@ -15,7 +15,7 @@ const Avatar = ({size = "medium"}) => {
     } 
   }
 
-  return <div className={`${sizeDecider()} rounded-full bg-primary`}></div>;
+  return <img src={source} className={`${sizeDecider()} rounded-full bg-primary`}></img>;
 }
 
 export default Avatar;

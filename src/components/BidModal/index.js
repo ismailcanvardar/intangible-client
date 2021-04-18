@@ -63,7 +63,7 @@ export default function BidModal({ showModal, setShowModal, tokenId }) {
                       disabled={lastPrice === 0 || bidOnQueue === true}
                       label="Bid"
                       loading={bidOnQueue === true}
-                      bgColor="bg-button-control"
+                      bgColor="bg-button-primary"
                       onClick={handleBid}
                     />
                   </div>

@@ -5,7 +5,7 @@ function Button({
   bgColor,
   disabled,
   label,
-  labelColor,
+  labelColor = "text-text-secondary",
   size = "medium",
   shadow = "",
   loading = false,
@@ -23,7 +23,7 @@ function Button({
   return (
     <button
       onClick={disabled === true ? null : onClick}
-      class={`${disabled ? "bg-gray-600" : bgColor} ${labelColor} ${shadow} ${
+      class={`${disabled ? "bg-gray-200" : bgColor} ${labelColor} ${shadow} ${
         disabled
           ? "focus:outline-none"
           : "transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:outline-white"
@@ -36,7 +36,7 @@ function Button({
             viewBox="0 0 24 24"
           ></svg>
         )}
-        {label}
+        <p className={labelColor}>{label}</p>
       </div>
     </button>
   );

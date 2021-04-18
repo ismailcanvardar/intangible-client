@@ -50,9 +50,9 @@ export default function Modal({ showModal, setShowModal, tokenId }) {
                       <Tabs tokenId={tokenId} color="red" />
                     ) : (
                       <div className="flex flex-col justify-center items-center">
-                        <p className="text-text-primaryPale mt-1 mb-2 text-blueGray-500 text-xs leading-relaxed">
+                        <p className="text-text-primaryPale mt-1 mb-6 text-blueGray-500 text-xs leading-relaxed">
                           You have to approve your wallet to Intangible
-                          contract."
+                          contract.
                         </p>
                         <Button
                           loading={approving === true ? true : false}

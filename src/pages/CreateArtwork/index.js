@@ -96,14 +96,14 @@ function CreateArtwork() {
               style={{ display: "none" }}
             />
             <div className="flex flex-col gap-2">
-              <p className="text-white">Title</p>
+              <p className="text-text-primary">Title</p>
               <Input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 size="large"
                 placeholder="Type here..."
               />
-              <p className="text-white">Description</p>
+              <p className="text-text-primary">Description</p>
               <Input
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}

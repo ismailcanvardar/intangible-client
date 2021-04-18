@@ -168,21 +168,21 @@ const Artwork = () => {
                     onClick={handleCancellation}
                     label="Cancel Auction"
                     bgColor="bg-button-primary"
-                    labelColor="text-text-primary"
+                    labelColor="text-text-secondary"
                   />
                   <Button
                     onClick={() => handleSettling()}
                     label="Settle Auction"
                     bgColor="bg-button-control"
-                    labelColor="text-text-secondary"
+                    labelColor="text-primary"
                   />
                 </>
               ) : (
                 <Button
                   onClick={() => setShowBidModal(true)}
-                  label="Make Bid"
+                  label="Bid"
                   bgColor="bg-button-control"
-                  labelColor="text-text-secondary"
+                  labelColor="text-text-primary"
                 />
               )
             ) : tokenOwner === account ? (
