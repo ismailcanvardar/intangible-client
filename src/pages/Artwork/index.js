@@ -49,7 +49,7 @@ const Artwork = () => {
       return (
         <div className="bg-input-background flex flex-row justify-between rounded-xl px-5 py-2 my-2 w-full">
           <div>
-            <Link to="/" className="text-text-primary">
+            <Link to={`/user/${bid.from}`} className="text-text-primary">
               From: {shortenAddress(bid.from)}
             </Link>
             <p className="text-text-primary">
