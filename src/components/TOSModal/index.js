@@ -26,7 +26,7 @@ export default function Modal({showModal, setShowModal, approve}) {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <a href="/tos.pdf" target="blank" className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                  Do you accept <p className="font-bold inline">Intangible Terms of Services.</p>
+                  Do you accept <p className="font-bold underline inline">Intangible Terms of Services.</p>
                   </a>
                 </div>
                 {/*footer*/}
