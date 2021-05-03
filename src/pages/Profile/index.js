@@ -107,12 +107,12 @@ function Profile() {
         </div>
       </div>
       <Container>
-        <div className="pt-48 flex flex-col items-center m-h-screen">
+        <div className="pt-48 flex flex-col items-center">
           <h1 className="text-text-primary text-3xl font-bold uppercase text-center">
             {userData && userData.name}
           </h1>
           <h1 className="text-text-primary my-2">
-            {userData && "@" + userData.username}
+            {userData && userData.username !== null && "@" + userData.username}
           </h1>
           <p className="text-text-primary mt-2 mb-4">
             {userData && userData.description}
@@ -121,7 +121,7 @@ function Profile() {
           <div className="mt-2">
             <Button
               label="Edit Profile"
-              labelColor="text-text-primary"
+              labelColor="text-text-secondary"
               bgColor="bg-primary"
               onClick={() => setShowModal(true)}
             />
@@ -134,6 +134,7 @@ function Profile() {
             <div className="flex justify-center py-16">
               <div className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {collections.map((collection) => {
+                  console.log(collection);
                   return (
                     <CollectionInfo key={collection._id} data={collection} />
                   );

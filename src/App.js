@@ -13,12 +13,14 @@ import Navbar from "../src/components/Navbar";
 import Web3Provider from "./contexts/Web3Provider";
 import MomentUtils from "@date-io/moment";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import TermsOfServices from "./contexts/TermsOfServices";
 
 function App() {
   return (
     <div style={{ overflow: "hidden" }}>
       <MuiPickersUtilsProvider utils={MomentUtils}>
         <Web3Provider>
+          <TermsOfServices />
           <Router>
             <Navbar />
             <Switch>

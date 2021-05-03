@@ -17,7 +17,7 @@ function Navbar() {
           <h1 className="text-text-main text-3xl">Intangible</h1>
         </div>
         {/* Buttons and connect wallet section */}
-        <div className="flex flex-row flex-1 justify-between pl-24">
+        <div className="flex flex-row flex-1 justify-between pl-24 hidden md:flex">
           <div className="grid grid-cols-3 gap-4 flex items-center">
             <Link
               to="/"
@@ -59,11 +59,16 @@ function Navbar() {
               bgColor="bg-button-control"
             /> */}
             {/* <FiSun size={24} color={"white"} /> */}
-            <div className="h-12">
-            <Link to="/create" className="h-full flex justify-center items-center text-text-secondary rounded-lg bg-white px-4 font-bold ml-4 hover:shadow-button1 bg-primary">
-              Create
-            </Link>
-            </div>
+            {account && (
+              <div className="h-12">
+                <Link
+                  to="/create"
+                  className="h-full flex justify-center items-center text-text-secondary rounded-lg bg-white px-4 font-bold ml-4 hover:shadow-button1 bg-primary"
+                >
+                  Create
+                </Link>
+              </div>
+            )}
             {account ? (
               <Dropdown />
             ) : (

@@ -9,7 +9,7 @@ export default function BidModal({ showModal, setShowModal, tokenId }) {
   const [lastPrice, setLastPrice] = useState(0);
   const [bidOnQueue, setBidOnQueue] = useState(false);
 
-  const { account, intangibleAuctionHouse } = useContext(Web3Context);
+  const { account, intangibleAuctionHouse, avaxPrice } = useContext(Web3Context);
 
   useEffect(() => {
     let bid = parseFloat(bidAmount);
@@ -55,7 +55,7 @@ export default function BidModal({ showModal, setShowModal, tokenId }) {
                     <p className="text-text-primary">AVAX</p>
                   </div>
                   <p className="text-text-primaryPale px-2 mt-4">
-                    You will be pay {lastPrice === 0 ? 0 : lastPrice.toFixed(4)}{" "}
+                    You will be pay {lastPrice === 0 ? 0 : lastPrice.toFixed(4)}{" "} - ${(lastPrice * avaxPrice).toString().slice(0, 6)}
                     with marketplace fee.
                   </p>
                   <div className="flex justify-center mt-4">

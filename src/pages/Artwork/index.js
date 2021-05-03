@@ -13,11 +13,12 @@ import CreateAuctionModal from "../../components/CreateAuctionModal";
 import BidModal from "../../components/BidModal";
 import moment from "moment";
 import {formatCountdown, manipulateCountdown} from "../../utils/countdownManipulation";
+import CancelAuctionTooltip from "../../components/CancelAuctionTooltip";
 
 const Artwork = () => {
   const { tokenId } = useParams();
   const [collectionData, setCollectionData] = useState();
-  const { account, intangibleNft, intangibleAuctionHouse } = useContext(
+  const { account, intangibleNft, intangibleAuctionHouse, avaxPrice } = useContext(
     Web3Context
   );
   const [tokenOwner, setTokenOwner] = useState();
@@ -27,6 +28,9 @@ const Artwork = () => {
   const [showBidModal, setShowBidModal] = useState(false);
   const [bids, setBids] = useState();
   const [auctionCreator, setAuctionCreator] = useState();
+
+  const [creatorUsername, setCreatorUsername] = useState();
+  const [tokenOwnerUsername, setTokenOwnerUsername] = useState();
 
   const [countdownData, setCountdownData] = useState();
 
@@ -58,7 +62,7 @@ const Artwork = () => {
           </div>
           <div className="flex items-center">
             <p className="text-text-primaryPale text-xl font-bold">
-              {bid.amount} AVAX
+              {bid.amount} AVAX - ${(bid.amount * avaxPrice).toString().slice(0, 6)}
             </p>
           </div>
         </div>
@@ -136,6 +140,29 @@ const Artwork = () => {
     );
   }
 
+  useEffect(() => {
+    if (collectionData && tokenOwner) {
+      getUsernames()
+    }
+  }, [collectionData, tokenOwner])
+
+  const getUsernames = async () => {
+    const {data: creatorUsername} = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/getUsername/${collectionData.creator}`);
+    const { data: tokenOwnerUsername } = await axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}/users/getUsername/${tokenOwner}`
+    );
+    console.log(creatorUsername);
+    console.log(tokenOwnerUsername);
+
+    if (creatorUsername) {
+      setCreatorUsername(creatorUsername);
+    }
+
+    if (tokenOwnerUsername) {
+      setTokenOwnerUsername(tokenOwnerUsername);
+    }
+  }
+
   return (
     <Container>
       <div className="py-8">
@@ -164,12 +191,16 @@ const Artwork = () => {
             {hasAuction === true ? (
               auctionCreator === account ? (
                 <>
-                  <Button
-                    onClick={handleCancellation}
-                    label="Cancel Auction"
-                    bgColor="bg-button-primary"
-                    labelColor="text-text-secondary"
-                  />
+                  {bids && bids.length > 0 ? (
+                    <CancelAuctionTooltip/>
+                  ) : (
+                    <Button
+                      onClick={handleCancellation}
+                      label="Cancel Auction"
+                      bgColor="bg-button-primary"
+                      labelColor="text-text-secondary"
+                    />
+                  )}
                   <Button
                     onClick={() => handleSettling()}
                     label="Settle Auction"
@@ -194,7 +225,7 @@ const Artwork = () => {
                   }
                 }}
                 bgColor="bg-primary"
-                labelColor="text-text-primary"
+                labelColor="text-text-secondary"
               />
             ) : (
               <Button
@@ -214,15 +245,23 @@ const Artwork = () => {
             <p className="text-text-primaryPale text-xl">
               {collectionData && collectionData.description}
             </p>
-            <Link to={`/creator/${collectionData && collectionData.creator}`} className="text-text-primaryPale text-sm mt-2">
+            <Link
+              to={`/creator/${collectionData && collectionData.creator}`}
+              className="text-text-primaryPale text-sm mt-2"
+            >
               Creator:{" "}
-              {collectionData && shortenAddress(collectionData.creator)}
+              {creatorUsername ? creatorUsername : collectionData && shortenAddress(collectionData.creator)}
             </Link>
-            <Link to={`/creator/${tokenOwner}`} className="text-text-primaryPale text-sm mt-2">
-              Owner: {tokenOwner && shortenAddress(tokenOwner)}
+            <Link
+              to={`/creator/${tokenOwner}`}
+              className="text-text-primaryPale text-sm mt-2"
+            >
+              Owner: {tokenOwnerUsername ? tokenOwnerUsername : tokenOwner && shortenAddress(tokenOwner)}
             </Link>
             {countdownData && (
-              <p className="text-xl font-bold text-text-primary mt-2">{formatCountdown(countdownData)}</p>
+              <p className="text-xl font-bold text-text-primary mt-2">
+                {formatCountdown(countdownData)}
+              </p>
             )}
           </div>
           <div>

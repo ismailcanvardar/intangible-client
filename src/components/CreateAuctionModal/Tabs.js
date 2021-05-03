@@ -194,7 +194,7 @@ const Tabs = ({ color, tokenId }) => {
                       onClick={handleColdieAuction}
                       label="Start"
                       bgColor="bg-primary"
-                      labelColor="text-text-primary"
+                      labelColor="text-text-secondary"
                       disabled={
                         reservePrice.length === 0 || coldieCreating === true
                       }
@@ -272,7 +272,7 @@ const Tabs = ({ color, tokenId }) => {
                       onClick={handleScheduledAuction}
                       label="Start"
                       bgColor="bg-primary"
-                      labelColor="text-text-primary"
+                      labelColor="text-text-secondary"
                       loading={scheduledCreating}
                       disabled={scheduledCreating || !scheduledInputOkay}
                     />

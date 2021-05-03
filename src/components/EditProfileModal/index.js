@@ -169,7 +169,7 @@ export default function Modal({ showModal, setShowModal }) {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Name here..."
-                      maxLength="8"
+                      maxLength="16"
                     />
                   </div>
                   <div className="my-2">
@@ -177,7 +177,7 @@ export default function Modal({ showModal, setShowModal }) {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       placeholder="Username here..."
-                      maxLength="8"
+                      maxLength="16"
                     />
                   </div>
                   <div className="my-2">

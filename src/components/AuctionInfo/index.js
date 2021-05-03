@@ -59,7 +59,7 @@ function AuctionInfo({ auctionData }) {
           ))}
       </div>
       <div className="px-6 py-4 bg-background">
-        <h1 className="font-bold text-xl w-6/8 text-text-primary">
+        <h1 className="font-bold text-xl w-6/8 text-text-primary break-all">
           {
             tokenData !== undefined && tokenData.title
           }
@@ -100,7 +100,7 @@ function AuctionInfo({ auctionData }) {
         {type === "COLDIE" && (
           <>
             <div>
-              <h1 className="text-text-primary font-bold">Reserved price</h1>
+              <h1 className="text-text-primary font-bold">Reserve price</h1>
               <p className="text-sm">{auctionData.reservePrice} AVAX</p>
             </div>
           </>

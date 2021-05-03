@@ -47,7 +47,7 @@ function Artworks() {
                 : "text-text-primaryPale"
             } text-xs md:text-md lg:text-lg`}
           >
-            Reserve not met
+            Open to Offers
           </Link>
           <Link
             to="/artworks/sold"

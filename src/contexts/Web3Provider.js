@@ -6,6 +6,7 @@ import { default as IntangibleNFT } from "../contracts/IntangibleNFT.json";
 import { default as MarketplaceSettings } from "../contracts/MarketplaceSettings.json";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { BiWindowOpen } from "react-icons/bi";
+import axios from "axios";
 
 export const Web3Context = createContext();
 
@@ -16,10 +17,24 @@ function Web3Provider({ children }) {
   const [intangibleNft, setIntangibleNft] = useState();
   const [marketplaceSettings, setMarketplaceSettings] = useState();
   const [balance, setBalance] = useState();
+  const [avaxPrice, setAvaxPrice] = useState();
 
   useEffect(() => {
     connect();
+    getAvaxPrice();
   }, []);
+
+  const getAvaxPrice = () => {
+    axios
+      .get(
+        "https://api.coingecko.com/api/v3/simple/price?ids=avalanche-2&vs_currencies=usd"
+      )
+      .then((res) => {
+        console.log(res.data["avalanche-2"]["usd"]);
+        setAvaxPrice(res.data["avalanche-2"]["usd"])
+      })
+      .catch((err) => console.log(err));
+  };
 
   const connect = async () => {
     const provider = await detectEthereumProvider();
@@ -52,7 +67,7 @@ function Web3Provider({ children }) {
   const disconnect = async () => {
     setAccount();
     window.location.reload();
-  }
+  };
 
   useEffect(() => {
     if (window.ethereum) {
@@ -133,7 +148,8 @@ function Web3Provider({ children }) {
         connectWallet,
         connect,
         balance,
-        disconnect
+        disconnect,
+        avaxPrice
       }}
     >
       {children}
